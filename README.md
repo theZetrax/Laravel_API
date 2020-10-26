@@ -1,2 +1,2 @@
 # Laravel_API
- A simple REST api using laravel resources.
+ A simple REST API using laravel 5.8 resources
