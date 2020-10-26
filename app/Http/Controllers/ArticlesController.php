@@ -27,7 +27,16 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = $request->isMethod('put') ? Article::findOrFail($request->article_id) : new Article();
+
+        $article->id = $request->input('article_id');
+        $article->title = $request->input('title');
+        $article->body = $request->input('body');
+
+        if($article->save())
+        {
+            return new ArticleResource($article);
+        }
     }
 
     /**
@@ -43,17 +52,6 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -61,6 +59,8 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        if($article->delete())
+            return new ArticleResource($article);
     }
 }

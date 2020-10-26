@@ -21,6 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('articles', [ArticlesController::class, 'index']);
 Route::get('article/{id}', [ArticlesController::class, 'show']);
-Route::post('article', [ArticleController::class, 'store']);
+Route::post('article', [ArticlesController::class, 'store']);
 Route::put('article', [ArticlesController::class, 'store']);
-Route::delete('article', [ArticlesController::class, 'destroy']);
+Route::delete('article/{id}', [ArticlesController::class, 'destroy']);
